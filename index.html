@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .wrapper {
+        position: relative;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 258px;
+        display: flex;
+        flex-direction: column;
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, 0.4705882353);
+      }
+
+      .sidebar-logo {
+
+      }
+
+      .sidebar-menus a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.5 );
+      }
+
+      .sidebar-menus a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .sidebar-logo a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 16px 0;
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .video-container video {
+        width: 100%;
+        height: auto;
+        display: block;
+        min-height: 100vh;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="sidebar-logo">
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/logo.png" height="90" alt="">
+          </a>
+        </div>
+        <div class="sidebar-menus">
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-1.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-2.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-3.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-4.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-5.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-6.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-6a.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-7.png" alt="">
+          </a>
+          <a href="">
+            <img src="https://mu-hanoi.tv/images/icon-8.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="video-container">
+        <video
+          width="1920"
+          autoplay
+          loop
+          muted
+          playsinline
+          style="min-height: 100vh; object-fit: cover"
+        >
+          <source src="./assets/brackroundweb.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+  </body>
+</html>
