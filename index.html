@@ -274,44 +274,44 @@
       </div>
       <div class="sidebar">
         <div class="sidebar-logo">
-          <a href="/">
+          <a href="">
             <img src="./assets/logo.png" height="90" alt="" />
           </a>
         </div>
         <div class="sidebar-menus">
-          <a href="/noi-quy.html">
+          <a href="#noi-quy-server">
             <img src="./assets/menu-icons/1.png" alt="" />
             <span>Nội Quy Server</span>
           </a>
-          <a href="/lo-trinh-phat-trien.html">
+          <a href="#lo-trinh-server">
             <img src="./assets/menu-icons/2.png" alt="" />
             <span>Lộ trình Server</span>
           </a>
-          <a href="/lenh-va-phim-tat.html">
+          <a href="#phim-tat-trong-game">
             <img src="./assets/menu-icons/3.png" alt="" />
             <span>Phím tắt trong Game</span>
           </a>
-          <a href="/thoi-gian-su-kien.html">
+          <a href="#thoi-gian-su-kien">
             <img src="./assets/menu-icons/4.png" alt="" />
             <span>Thời gian sự kiện</span>
           </a>
-          <a href="/tinh-nang-do-va-vu-khi.html">
+          <a href="#tinh-nang-do-va-vu-khi">
             <img src="./assets/menu-icons/5.png" alt="" />
             <span>Tính nằng Đồ và vũ khí</span>
           </a>
-          <a href="/">
+          <a href="">
             <img src="./assets/menu-icons/6.png" alt="" />
             <span>HD người chơi mới</span>
           </a>
-          <a href="/">
+          <a href="">
             <img src="./assets/menu-icons/1.png" alt="" />
             <span>HD Nạp trong game</span>
           </a>
-          <a href="/">
+          <a href="">
             <img src="./assets/menu-icons/2.png" alt="" />
             <span>Thông tin đua top</span>
           </a>
-          <a href="/">
+          <a href="">
             <img src="./assets/menu-icons/3.png" alt="" />
             <span>Hình ảnh Sự kiện, Offline server</span>
           </a>
@@ -338,6 +338,54 @@
           </a>
         </div>
       </div>
+      <div id="content"></div>
     </div>
+
+    <script>
+      const contents = {
+        'noi-quy-server': [
+          './assets/contents/noi-quy-server.jpg',
+        ],
+        'lo-trinh-server': [
+          './assets/contents/Lotrinhphattrien.png'
+        ],
+        'phim-tat-trong-game': [
+          './assets/contents/lenhvaphimtat.jpg'
+        ],
+        'thoi-gian-su-kien': [
+          './assets/contents/thoigiansukien.jpg'
+        ],
+        'tinh-nang-do-va-vu-khi': [
+          './assets/contents/dovukhi/Tinhnanganringpen.jpg',
+          './assets/contents/dovukhi/Tinhnangansetdo6.jpg',
+          './assets/contents/dovukhi/Tinhnangansetdo7.jpg',
+          './assets/contents/dovukhi/Tinhnanganvukhirong.jpg',
+          './assets/contents/dovukhi/Tinhnanganwing2.jpg',
+        ],
+
+      }
+
+      const videoContainer = document.querySelector(".video-container");
+      const contentElement = document.getElementById("content");
+      const links = document.querySelectorAll(".sidebar-menus a");
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          const href = link.getAttribute("href");
+          if (href.startsWith("#")) {
+            e.preventDefault();
+            const content = contents[href.replace("#", "")];
+            if (content) {
+              videoContainer.style.display = "none";
+              contentElement.style.display = "block";
+              contentElement.innerHTML = content.map(src => `<img src="${src}" />`).join("");
+            } else {
+              videoContainer.style.display = "block";
+              contentElement.style.display = "none";
+              contentElement.innerHTML = '';
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
