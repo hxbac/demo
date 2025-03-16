@@ -190,7 +190,6 @@
     </style>
   </head>
   <body>
-    <div style=""></div>
     <div class="wrapper">
       <div class="menu-top">
         <a href="">
@@ -324,19 +323,19 @@
             <img src="./assets/menu-icons/5.png" alt="" />
             <span>Tính nằng Đồ và vũ khí</span>
           </a>
-          <a href="">
+          <a href="#hd-nguoi-choi-moi">
             <img src="./assets/menu-icons/6.png" alt="" />
             <span>HD người chơi mới</span>
           </a>
-          <a href="">
+          <a href="#hd-nap-trong-game">
             <img src="./assets/menu-icons/1.png" alt="" />
             <span>HD Nạp trong game</span>
           </a>
-          <a href="">
+          <a href="#thong-tin-dua-top">
             <img src="./assets/menu-icons/2.png" alt="" />
             <span>Thông tin đua top</span>
           </a>
-          <a href="">
+          <a href="#hinh-anh-su-kien-offline-server">
             <img src="./assets/menu-icons/3.png" alt="" />
             <span>Hình ảnh Sự kiện, Offline server</span>
           </a>
@@ -350,6 +349,7 @@
           muted=""
           loop=""
           style="min-height: 100vh; object-fit: cover"
+          id="video-bg"
         >
           <source src="./assets/brackroundweb.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -387,18 +387,49 @@
           './assets/contents/dovukhi/Tinhnanganvukhirong.jpg',
           './assets/contents/dovukhi/Tinhnanganwing2.jpg',
         ],
+        'hd-nguoi-choi-moi': [
+
+        ],
+        'hd-nap-trong-game': [
+
+        ],
+        'thong-tin-dua-top': [
+
+        ],
+        'hinh-anh-su-kien-offline-server': [
+
+        ],
       }
 
-      for (const key in contents) {
-        const content = contents[key];
-        content.forEach(src => {
-          const link = document.createElement("link");
-          link.rel = "preload";
-          link.as = "image";
-          link.href = src;
-          document.head.appendChild(link);
-        });
-      }
+      window.onload = function () {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const audioElement = new Audio("./assets/audiobg.mp3");
+        audioElement.loop = true;
+        const track = audioCtx.createMediaElementSource(audioElement);
+        track.connect(audioCtx.destination);
+
+        function startAudio() {
+            if (audioCtx.state === "suspended") {
+              audioCtx.resume();
+            }
+            audioElement.play();
+        }
+
+        setTimeout(startAudio, 2000);
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        for (const key in contents) {
+          const content = contents[key];
+          content.forEach(src => {
+            const link = document.createElement("link");
+            link.rel = "preload";
+            link.as = "image";
+            link.href = src;
+            document.head.appendChild(link);
+          });
+        }
+      });
 
       const videoContainer = document.querySelector(".video-container");
       const contentElement = document.getElementById("content");
@@ -407,6 +438,7 @@
         link.addEventListener("click", e => {
           const href = link.getAttribute("href");
           if (href.startsWith("#")) {
+            contentElement.innerHTML = '';
             e.preventDefault();
             const content = contents[href.replace("#", "")];
             if (content) {
@@ -416,7 +448,6 @@
             } else {
               videoContainer.style.display = "block";
               contentElement.style.display = "none";
-              contentElement.innerHTML = '';
             }
           }
         });
