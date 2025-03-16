@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preload" as="image" href="./assets/contents/bg-content.jpg">
 
     <style>
       * {
@@ -157,10 +158,33 @@
         filter: brightness(1.5);
       }
 
+      #content {
+        display: none;
+        background-image: url("./assets/contents/bg-content.jpg");
+        padding: 60px 240px;
+        min-height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
       #content img {
         width: 100%;
         display: block;
         height: auto;
+        animation: zoomIn 1s ease-out forwards;
+      }
+
+      @keyframes zoomIn {
+        0% {
+          transform: scale(0.7) translateX(-3000px);
+        }
+        50% {
+          transform: scale(0.7) translateX(0);
+        }
+        100% {
+          transform: scale(1) translateX(0);
+        }
       }
     </style>
   </head>
@@ -356,13 +380,23 @@
           './assets/contents/thoigiansukien.jpg'
         ],
         'tinh-nang-do-va-vu-khi': [
-          './assets/contents/dovukhi/Tinhnanganringpen.jpg',
           './assets/contents/dovukhi/Tinhnangansetdo6.jpg',
           './assets/contents/dovukhi/Tinhnangansetdo7.jpg',
+          './assets/contents/dovukhi/Tinhnanganringpen.jpg',
           './assets/contents/dovukhi/Tinhnanganvukhirong.jpg',
           './assets/contents/dovukhi/Tinhnanganwing2.jpg',
         ],
+      }
 
+      for (const key in contents) {
+        const content = contents[key];
+        content.forEach(src => {
+          const link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = src;
+          document.head.appendChild(link);
+        });
       }
 
       const videoContainer = document.querySelector(".video-container");
